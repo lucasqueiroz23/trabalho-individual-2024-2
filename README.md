@@ -1,18 +1,20 @@
 
-# Guia de Configuração: Projeto Django + Next.js
+## Projeto Base: Django + Next.js
 
-### Estrutura do projeto
+Este é um projeto base que servirá para a implementação de práticas DevOps. O sistema é composto por um backend em Django e um frontend em Next.js.
+
+### Sobre o Projeto
+O projeto está organizado como um monorepo com a seguinte estrutura:
 
 ```bash
 .
 ├── api                          # Backend Django
 │   ├── config
-│   ├── conftest.py
 │   ├── core_apps
 │   ├── manage.py
 │   ├── pytest.ini
 │   └── requirements.txt
-|   └── ...
+│   └── ...
 ├── README.md
 └── web                          # Frontend NextJS
     ├── components.json
@@ -21,10 +23,11 @@
     ├── package-lock.json
     ├── public
     ├── src
-    └── tsconfig.json
+    ├── tsconfig.json
+    └── ...
 ```
 
-### Rodar localmente
+### Como Rodar Localmente (Sem Docker)
 
 #### 1. Pré-requisitos
 
@@ -32,14 +35,14 @@
 - Node.js 20+ e npm
 - Git
 
-#### 1. Clonando o projeto
+#### 2. Clonando o projeto
 
 ```bash
 git clone https://github.com/FGA-GCES/trabalho-individual-2024-2.git
 cd trabalho-individual-2024-2
 ```
 
-#### 2. Configurando o backend (Django)
+#### 3. Configurando o backend (Django)
 
 ```bash
 # Entre no diretório do backend
@@ -64,7 +67,7 @@ python manage.py runserver
 
 O backend estará rodando em `http://localhost:8000`
 
-#### 3. Configurando o frontend (Next.js)
+#### 4. Configurando o frontend (Next.js)
 
 ```bash
 # Entre no diretório do frontend
