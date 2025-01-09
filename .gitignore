@@ -1,0 +1,104 @@
+# IDE
+.vscode
+.idea
+.DS_Store
+
+# Django API
+api/staticfiles/
+api/.envs/*
+!api/.envs/.env.example
+.env
+.venv
+
+# Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Local DB
+db.sqlite3
+api/db.sqlite3
+
+# Python packaging
+.Python
+api/build/
+api/develop-eggs/
+api/dist/
+api/downloads/
+api/eggs/
+api/.eggs/
+api/lib/
+api/lib64/
+api/parts/
+api/sdist/
+api/var/
+api/wheels/
+api/share/python-wheels/
+api/*.egg-info/
+api/.installed.cfg
+api/*.egg
+api/MANIFEST
+api/*.manifest
+api/*.spec
+
+# Python logs and tests
+api/pip-log.txt
+api/pip-delete-this-directory.txt
+api/htmlcov/
+api/.tox/
+api/.nox/
+api/.coverage
+api/.coverage.*
+api/.cache
+api/nosetests.xml
+api/coverage.xml
+api/*.cover
+api/*.py,cover
+api/.hypothesis/
+api/.pytest_cache/
+api/cover/
+
+# Django
+api/*.log
+api/local_settings.py
+api/db.sqlite3
+api/db.sqlite3-journal
+
+# Python environments
+api/.env
+api/.venv
+api/env/
+api/venv/
+api/ENV/
+api/env.bak/
+api/venv.bak/
+
+# Python tools
+api/.mypy_cache/
+api/.dmypy.json
+api/dmypy.json
+api/.pyre/
+api/.pytype/
+api/cython_debug/
+
+# Next.js Web
+web/node_modules
+web/.pnp
+web/.pnp.js
+web/.yarn/install-state.gz
+web/coverage
+web/.next/
+web/out/
+web/build
+web/.DS_Store
+web/*.pem
+web/npm-debug.log*
+web/yarn-debug.log*
+web/yarn-error.log*
+web/.env*.production
+web/.vercel
+web/*.tsbuildinfo
+
+# Keep
+!web/src/lib
