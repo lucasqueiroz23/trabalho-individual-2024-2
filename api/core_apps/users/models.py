@@ -22,7 +22,9 @@ class User(AbstractUser):
     id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     first_name = models.CharField(verbose_name=_("First Name"), max_length=60)
     last_name = models.CharField(verbose_name=_("Last Name"), max_length=60)
-    email = models.EmailField(verbose_name=_("Email Address"), unique=True, db_index=True)
+    email = models.EmailField(
+        verbose_name=_("Email Address"), unique=True, db_index=True
+    )
     username = models.CharField(
         verbose_name=_("Username"),
         max_length=60,

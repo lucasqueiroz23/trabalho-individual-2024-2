@@ -1,4 +1,3 @@
-
 from django.contrib.auth import get_user_model
 from django.db.models import QuerySet
 from django.http import Http404
@@ -88,6 +87,7 @@ class AvatarUploadView(APIView):
         if serializer.is_valid():
             image = serializer.validated_data["avatar"]
             image_content = image.read()
+            print(image_content)
 
             return Response(
                 {"message": "Avatar upload started."}, status=status.HTTP_202_ACCEPTED

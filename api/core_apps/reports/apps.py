@@ -8,4 +8,4 @@ class ReportsConfig(AppConfig):
     verbose_name = _("Reports")
 
     def ready(self) -> None:
-        import core_apps.reports.signals
+        pass

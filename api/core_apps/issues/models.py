@@ -29,11 +29,19 @@ class Issue(TimeStampedModel):
 
     title = models.CharField(verbose_name=_("Issue Title"), max_length=255)
     description = models.TextField(verbose_name=_("Issue Description"))
-    status = models.CharField(max_length=20, choices=IssueStatus.choices, default=IssueStatus.REPORTED)
-    priority = models.CharField(max_length=20, choices=Priority.choices, default=Priority.LOW)
+    status = models.CharField(
+        max_length=20, choices=IssueStatus.choices, default=IssueStatus.REPORTED
+    )
+    priority = models.CharField(
+        max_length=20, choices=Priority.choices, default=Priority.LOW
+    )
     resolved_on = models.DateField(verbose_name=_("Resolved On"), null=True, blank=True)
-    apartment = models.ForeignKey(Apartment, on_delete=models.CASCADE, related_name="issues")
-    reported_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reported_by_issues")
+    apartment = models.ForeignKey(
+        Apartment, on_delete=models.CASCADE, related_name="issues"
+    )
+    reported_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="reported_by_issues"
+    )
     assigned_to = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
@@ -55,7 +63,11 @@ class Issue(TimeStampedModel):
             old_assigned_to = old_issue.assigned_to
         super().save(*args, **kwargs)
 
-        if is_existing_instance and self.assigned_to != old_assigned_to and self.assigned_to is not None:
+        if (
+            is_existing_instance
+            and self.assigned_to != old_assigned_to
+            and self.assigned_to is not None
+        ):
             self.notify_assigned_user()
 
     def notify_assigned_user(self) -> None:
@@ -65,11 +77,17 @@ class Issue(TimeStampedModel):
             recipient_list = [self.assigned_to.email]
 
             context = {"issue": self, "site_name": settings.SITE_NAME}
-            html_email = render_to_string("emails/issue_assignment_notification.html", context)
+            html_email = render_to_string(
+                "emails/issue_assignment_notification.html", context
+            )
             text_email = strip_tags(html_email)
 
-            email = EmailMultiAlternatives(subject, text_email, from_email, recipient_list)
+            email = EmailMultiAlternatives(
+                subject, text_email, from_email, recipient_list
+            )
             email.attach_alternative(html_email, "text/html")
             email.send()
         except Exception as e:
-            logger.error(f"Failed to send issue assignment email for issue '{self.title}':{e}")
+            logger.error(
+                f"Failed to send issue assignment email for issue '{self.title}':{e}"
+            )

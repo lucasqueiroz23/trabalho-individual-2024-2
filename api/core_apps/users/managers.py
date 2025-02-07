@@ -23,7 +23,9 @@ class UserManager(DjangoUserManager):
 
         email = self.normalize_email(email)
         validate_email_address(email)
-        global_user_model = apps.get_model(self.model._meta.app_label, self.model._meta.object_name)
+        global_user_model = apps.get_model(
+            self.model._meta.app_label, self.model._meta.object_name
+        )
         username = global_user_model.normalize_username(username)
         user = self.model(username=username, email=email, **extra_fields)
         user.password = make_password(password)

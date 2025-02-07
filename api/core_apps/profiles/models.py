@@ -32,12 +32,23 @@ class Profile(TimeStampedModel):
         TENANT = ("tenant", _("Tenant"))
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-    avatar = models.ImageField(upload_to="avatars/", verbose_name=_("Avatar"), blank=True, null=True)
-    gender = models.CharField(verbose_name=_("Gender"), max_length=10, choices=Gender.choices, default=Gender.OTHER)
+    avatar = models.ImageField(
+        upload_to="avatars/", verbose_name=_("Avatar"), blank=True, null=True
+    )
+    gender = models.CharField(
+        verbose_name=_("Gender"),
+        max_length=10,
+        choices=Gender.choices,
+        default=Gender.OTHER,
+    )
     bio = models.TextField(verbose_name=_("Bio"), blank=True, null=True)
-    phone_number = PhoneNumberField(verbose_name=_("Phone Number"), max_length=30, default="+250784123456")
+    phone_number = PhoneNumberField(
+        verbose_name=_("Phone Number"), max_length=30, default="+250784123456"
+    )
     country_of_origin = CountryField(verbose_name=_("Country"), default="KE")
-    city_of_origin = models.CharField(verbose_name=_("City"), max_length=180, default="Nairobi")
+    city_of_origin = models.CharField(
+        verbose_name=_("City"), max_length=180, default="Nairobi"
+    )
     report_count = models.IntegerField(verbose_name=_("Report Count"), default=0)
     reputation = models.IntegerField(verbose_name=_("Reputation"), default=100)
     slug = AutoSlugField(populate_from=get_user_username, unique=True)

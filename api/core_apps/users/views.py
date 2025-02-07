@@ -1,7 +1,5 @@
 import logging
 
-from typing import Optional
-
 from django.conf import settings
 from djoser.social.views import ProviderAuthView
 from rest_framework import status
@@ -13,8 +11,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 logger = logging.getLogger(__name__)
 
 
-def set_auth_cookies(
-    response, access_token, refresh_token):
+def set_auth_cookies(response, access_token, refresh_token):
     access_token_lifetime = settings.SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"].total_seconds()
     cookie_settings = {
         "path": settings.COOKIE_PATH,
@@ -26,7 +23,9 @@ def set_auth_cookies(
     response.set_cookie("access", access_token, **cookie_settings)
 
     if refresh_token:
-        refresh_token_lifetime = settings.SIMPLE_JWT["REFRESH_TOKEN_LIFETIME"].total_seconds()
+        refresh_token_lifetime = settings.SIMPLE_JWT[
+            "REFRESH_TOKEN_LIFETIME"
+        ].total_seconds()
         refresh_cookie_settings = cookie_settings.copy()
         refresh_cookie_settings["max_age"] = refresh_token_lifetime
         response.set_cookie("refresh", refresh_token, **refresh_cookie_settings)
@@ -93,8 +92,12 @@ class CustomTokenRefreshView(TokenRefreshView):
 
                 refresh_res.data["message"] = "Access tokens refreshed successfully"
             else:
-                refresh_res.data["message"] = ("Access or refresh tokens not found in refresh response data")
-                logger.error("Access or refresh token not found in refresh response data")
+                refresh_res.data["message"] = (
+                    "Access or refresh tokens not found in refresh response data"
+                )
+                logger.error(
+                    "Access or refresh token not found in refresh response data"
+                )
 
         return refresh_res
 
@@ -118,8 +121,12 @@ class CustomProviderAuthView(ProviderAuthView):
                 provider_res.data.pop("refresh", None)
                 provider_res.data["message"] = "You are logged in Successful."
             else:
-                provider_res.data["message"] = ("Access or refresh token not found in provider response")
-                logger.error("Access or refresh token not found in provider response data")
+                provider_res.data["message"] = (
+                    "Access or refresh token not found in provider response"
+                )
+                logger.error(
+                    "Access or refresh token not found in provider response data"
+                )
 
         return provider_res
 

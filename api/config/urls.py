@@ -25,7 +25,11 @@ urlpatterns = [
     path("api/v1/ratings/", include("core_apps.ratings.urls")),
     path("api/v1/posts/", include("core_apps.posts.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
-    path("redoc/",schema_view.with_ui("redoc", cache_timeout=0),name="schema-redoc",),
+    path(
+        "redoc/",
+        schema_view.with_ui("redoc", cache_timeout=0),
+        name="schema-redoc",
+    ),
 ]
 
 admin.site.site_header = "Alpha Apartments Admin"

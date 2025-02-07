@@ -15,4 +15,6 @@ def create_user_profile(sender, instance, created, **kwargs) -> None:
         Profile.objects.create(user=instance)
         logger.info(f"Profile created for {instance.first_name} {instance.last_name}")
     else:
-        logger.info(f"Profile already exists for {instance.first_name} {instance.last_name}")
+        logger.info(
+            f"Profile already exists for {instance.first_name} {instance.last_name}"
+        )

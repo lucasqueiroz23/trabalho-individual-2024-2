@@ -18,7 +18,7 @@ DEBUG = True
 ADMIN_URL = "admin/"
 SECRET_KEY = "Insecure-key-uAojmk8T"
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 CORS_ALLOW_CREDENTIALS = True
@@ -98,9 +98,9 @@ WSGI_APPLICATION = "config.wsgi.application"
 # -------------------------------------------------------------------------------------
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -156,7 +156,9 @@ COOKIE_HTTPONLY = True
 
 # --------------------------------------------------------------------------------------
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": ("core_apps.common.cookie_auth.CookieAuthentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "core_apps.common.cookie_auth.CookieAuthentication",
+    ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "DEFAULT_FILTER_BACKENDS": [
